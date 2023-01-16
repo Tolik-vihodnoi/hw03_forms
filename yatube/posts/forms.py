@@ -12,8 +12,7 @@ class PostForm(ModelForm):
             'text': Textarea(attrs={'cols': 40, 'rows': 10}),
         }
 
-
-    def  clean_text(self):
+    def clean_text(self):
         data = self.cleaned_data['text']
         if not data:
             raise forms.ValidationError('Поле обязательно для заполнения')

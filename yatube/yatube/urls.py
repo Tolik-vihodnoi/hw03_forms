@@ -8,4 +8,3 @@ urlpatterns = [
     path('about/', include('about.urls', namespace='about')),
     path('', include('posts.urls', namespace='posts')),
 ]
-

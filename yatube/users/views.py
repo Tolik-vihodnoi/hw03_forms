@@ -10,11 +10,12 @@ class SignUp(CreateView):
     success_url = reverse_lazy('posts:index')
     template_name = 'users/signup.html'
 
+
 class PasswordChange(PasswordChangeView):
     success_url = reverse_lazy('users:password_change_done')
     template_name = 'users/password_change_form.html'
 
+
 class Login(LoginView):
     success_url = reverse_lazy('posts:index')
     template_name = 'users/login.html'
-
