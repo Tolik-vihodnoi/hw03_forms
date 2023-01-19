@@ -1,79 +1,27 @@
 {% extends 'base.html' %}
-
 {% block title %}
-  {% if is_edit %}
-    Редактировать пост
-  {% else %}
-    Новый пост
-  {% endif %}
+  {% if post_id %}Редактировать пост{% else %}Новый пост{% endif %}
 {% endblock title %}
-
 {% block content %}
   <div class="row justify-content-center">
     <div class="col-md-8 p-5">
       <div class="card">
         <div class="card-header">
-          {% if is_edit %}
-            Редактировать пост
-          {% else %}
-            Новый пост
-          {% endif %}
+          {% if post_id %}Редактировать пост{% else %}Новый пост{% endif %}
         </div>
         <div class="card-body">
 
-          {% if form.errors %}
-            {% for field in form %}
-              {% for error in field.errors %}
-                <div class="alert alert-danger">
-                  {{ error|escape }}
-                </div>
-              {% endfor %}
-            {% endfor %}
-            {% for error in form.non_field_errors %}
-              <div class="alert alert-danger">
-                {{ error|escape }}
-              </div>
-            {% endfor %}
-          {% endif %}
+          {% include 'includes/errors_checker.html' %}
 
-          <form method="post" action="{% if is_edit %}{% url 'posts:post_edit' request.resolver_match.kwargs.post_id %}
+          <form method="post" action="{% if post_id %}{% url 'posts:post_edit' post_id %}
           {% else %}{% url 'posts:post_create' %}{% endif %}">
             {% csrf_token %}
 
-            <div class="form-group row my-3 p-3">
-              <label for="id_text">
-                Текст поста
-                <span class="required text-danger" >*</span>
-              </label>
-              <textarea name="text" cols="40" rows="10" class="form-control" required id="id_text">
-                {% if is_edit %}
-                  {{ form.text.value }}
-                {% endif %}
-              </textarea>
-              <small id="id_text-help" class="form-text text-muted">
-                Текст нового поста
-              </small>
-            </div>
-            <div class="form-group row my-3 p-3">
-              <label for="id_group">
-                Группа
-              </label>
-              <select name="group" class="form-control" id="id_group">
-                {% for option in form.group %}
-                  {{ option }}
-                {% endfor %}
-              </select>
-              <small id="id_group-help" class="form-text text-muted">
-                Группа, к которой будет относиться пост
-              </small>
-            </div>
+            {% include 'includes/form.html' %}
+
             <div class="d-flex justify-content-end">
               <button type="submit" class="btn btn-primary">
-                {% if is_edit %}
-                  Сохранить
-                {% else %}
-                  Добавить
-                {% endif %}
+                {% if post_id %}Сохранить{% else %}Добавить{% endif %}
               </button>
             </div>
           </form>

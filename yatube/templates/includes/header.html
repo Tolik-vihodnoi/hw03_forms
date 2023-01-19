@@ -34,20 +34,32 @@
             href="{% url 'posts:post_create' %}">Новая запись</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link link-light" href="{% url 'users:password_change' %}">Изменить пароль</a>
+            <a class="nav-link link-light {% if view_name == 'users:password_change' %}active{% endif %}"
+            href="{% url 'users:password_change' %}">
+              Изменить пароль
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link link-light" href="{% url 'users:logout' %}">Выйти</a>
+            <a class="nav-link link-light"
+            href="{% url 'users:logout' %}">
+              Выйти
+            </a>
           </li>
           <li class="nav-link link-light">
             <span style="color:green">Пользователь: {{ user.username }}</span>
           </li>
           {% else %}
           <li class="nav-item">
-            <a class="nav-link link-light" href="{% url 'users:login' %}">Войти</a>
+            <a class="nav-link link-light {% if view_name == 'users:login' %}active{% endif %}"
+            href="{% url 'users:login' %}">
+              Войти
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link link-light" href="{% url 'users:signup' %}">Регистрация</a>
+            <a class="nav-link link-light {% if view_name == 'users:signup' %}active{% endif %}"
+            href="{% url 'users:signup' %}">
+              Регистрация
+            </a>
           </li>
           {% endif %}
           {% endwith %}

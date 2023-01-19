@@ -11,6 +11,13 @@ class PostAdmin(admin.ModelAdmin):
     empty_value_display = '-пусто-'
     list_editable = ('group',)
 
+class GroupAdmin(admin.ModelAdmin):
+    list_display = ('title', 'slug', 'description')
+    search_fields = ('slug', 'title')
+    list_filter = ('title',)
+    empty_value_display = '-пусто-'
+    list_display_links = ('slug',)
+
 
 admin.site.register(Post, PostAdmin)
-admin.site.register(Group)
+admin.site.register(Group, GroupAdmin)

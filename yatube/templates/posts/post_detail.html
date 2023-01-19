@@ -32,14 +32,16 @@
         </li>
         <li class="list-group-item">
           <a href="{% url 'posts:post_edit' post.id %}">
+            {% if post.author == user %}
             редактировать пост
+            {% endif %}
           </a>
         </li>
       </ul>
     </aside>
     <article class="col-12 col-md-9">
       <p>
-        {{ post.text }}
+        {{ post.text|linebreaksbr }}
       </p>
     </article>
   </div>

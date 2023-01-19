@@ -13,6 +13,10 @@ class Group(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        verbose_name = 'Группа'
+        verbose_name_plural = 'Группы'
+
 
 class Post(models.Model):
     group = models.ForeignKey(
@@ -20,9 +24,12 @@ class Post(models.Model):
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
-        related_name='posts'
+        related_name='posts',
+        verbose_name='Группа',
+        help_text='Группа, к которой будет относиться пост'
     )
-    text = models.TextField()
+    text = models.TextField(verbose_name='Текст поста',
+                            help_text='Текст нового поста')
     pub_date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(
         User,
@@ -32,6 +39,8 @@ class Post(models.Model):
 
     class Meta:
         ordering = ['-pub_date']
+        verbose_name = 'Пост'
+        verbose_name_plural = 'Посты'
 
     def __str__(self):
         return self.text[:10]
