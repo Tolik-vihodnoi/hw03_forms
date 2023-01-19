@@ -1,16 +1,12 @@
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import PostForm
 from .models import Group, Post, User
 from .utils import do_page_obj
 
 
-# @login_required если не убрать этот декоратор, не проходят тесты:
-# test_index_paginator_view
-# test_index_paginator_not_in_view_context
 def index(request):
     posts = Post.objects.select_related('author',
                                         'group')
