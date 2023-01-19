@@ -11,6 +11,7 @@ class PostAdmin(admin.ModelAdmin):
     empty_value_display = '-пусто-'
     list_editable = ('group',)
 
+
 class GroupAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug', 'description')
     search_fields = ('slug', 'title')
