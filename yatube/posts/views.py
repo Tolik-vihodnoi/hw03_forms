@@ -40,8 +40,10 @@ def profile(request, username):
 
 
 def post_detail(request, post_id):
-    post = get_object_or_404(Post.objects.select_related('author', 'group'),
-                             pk=post_id)
+    post = get_object_or_404(
+        Post.objects.select_related('author', 'group'),
+        pk=post_id
+    )
     context = {
         'post': post
     }

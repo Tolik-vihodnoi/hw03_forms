@@ -25,7 +25,12 @@ SECRET_KEY = 'rrtepl&^()&2cu@2k)ez26yz!vwnd@g%@id!%*72dnepvjt7@9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '[::1]',
+    'testserver',
+]
 
 
 # Application definition
@@ -135,6 +140,7 @@ EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
 
 # My variables
 NUM_OF_POSTS: int = 10
+DISP_LETTERS = 15
 LOGIN_URL = 'users:login'
 LOGIN_REDIRECT_URL = 'posts:index'
 # LOGOUT_REDIRECT_URL = 'posts:index'

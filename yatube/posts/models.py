@@ -1,6 +1,6 @@
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.db import models
-
 
 User = get_user_model()
 
@@ -30,11 +30,13 @@ class Post(models.Model):
     )
     text = models.TextField(verbose_name='Текст поста',
                             help_text='Текст нового поста')
-    pub_date = models.DateTimeField(auto_now_add=True)
+    pub_date = models.DateTimeField(auto_now_add=True,
+                                    verbose_name='Дата публикации')
     author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='posts'
+        related_name='posts',
+        verbose_name='Автор'
     )
 
     class Meta:
@@ -43,4 +45,4 @@ class Post(models.Model):
         verbose_name_plural = 'Посты'
 
     def __str__(self):
-        return self.text[:10]
+        return self.text[:settings.DISP_LETTERS]
